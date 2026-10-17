@@ -1,0 +1,163 @@
+{
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "releaseVersion",
+      "type": "promptString",
+      "description": "Sürüm seviyesi (patch, minor, major veya 0.1.1)",
+      "default": "patch"
+    }
+  ],
+  "tasks": [
+    {
+      "label": "dev",
+      "type": "npm",
+      "script": "dev",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": false
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "Electron + Vite geliştirme sunucusu"
+    },
+    {
+      "label": "build",
+      "type": "npm",
+      "script": "build",
+      "problemMatcher": ["$tsc"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "group": "build",
+      "detail": "Production build → out/"
+    },
+    {
+      "label": "typecheck",
+      "type": "npm",
+      "script": "typecheck",
+      "problemMatcher": ["$tsc"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "group": "test",
+      "detail": "TypeScript kontrolü (main + renderer)"
+    },
+    {
+      "label": "test",
+      "type": "npm",
+      "script": "test",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "detail": "Testler (ekransız Electron); belirli testler için: npm test -- <ad>"
+    },
+    {
+      "label": "smoke",
+      "type": "npm",
+      "script": "smoke",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "group": "test",
+      "detail": "Sözlük duman testi (Electron gerekmez)"
+    },
+    {
+      "label": "preview",
+      "type": "npm",
+      "script": "preview",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "detail": "Üretilmiş out/ çıktısını önizle"
+    },
+    {
+      "label": "pack",
+      "type": "npm",
+      "script": "pack",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "group": "build",
+      "detail": "Paketlenmemiş dizin çıktısı (electron-builder --dir)"
+    },
+    {
+      "label": "dist:linux",
+      "type": "npm",
+      "script": "dist:linux",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "group": "build",
+      "detail": "Linux paketleri (AppImage, deb, rpm)"
+    },
+    {
+      "label": "dist:win",
+      "type": "npm",
+      "script": "dist:win",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "group": "build",
+      "detail": "Windows paketleri (NSIS + portable); Linux’ta wine32 gerekir (devcontainer kurar)"
+    },
+    {
+      "label": "dist:mac",
+      "type": "npm",
+      "script": "dist:mac",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "group": "build",
+      "detail": "macOS paketleri (dmg + zip); yalnız macOS’ta çalışır"
+    },
+    {
+      "label": "rebuild:native",
+      "type": "shell",
+      "command": "npx electron-rebuild -f -w better-sqlite3",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "detail": "better-sqlite3 native modülünü Electron için yeniden derle"
+    },
+    {
+      "label": "release-yarat",
+      "type": "shell",
+      "command": "npm version ${input:releaseVersion} && git push origin HEAD --follow-tags",
+      "dependsOn": ["typecheck", "test"],
+      "dependsOrder": "sequence",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "detail": "Testleri çalıştırır, sürüm commit/tag oluşturur ve GitHub release akışını başlatır"
+    }
+  ]
+}

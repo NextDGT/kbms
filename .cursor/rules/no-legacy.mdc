@@ -1,0 +1,12 @@
+---
+description: Ürün geliştirme aşamasında; eski biçimler ve geriye dönük uyumluluk yok
+alwaysApply: true
+---
+
+# Legacy yok
+
+KBMS geliştirme aşamasındadır. Eski veri, eski dosya veya eski anahtar biçimi için uyumluluk katmanı ekleme.
+
+- Yalnızca güncel biçimi yaz ve oku. Örnek: anahtar `[AD_1]`; `AD_1` tanınmaz, dönüştürülmez.
+- Eski kayıtları yeni biçime çeviren yükleme, migrasyon veya çift çözümleme ekleme.
+- Geriye dönük çalışsın diye ikinci bir kod yolu bırakma.

@@ -1,0 +1,81 @@
+name: Build & Package
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            script: dist:linux
+          - os: windows-2022
+            script: dist:win
+          - os: macos-latest
+            script: dist:mac
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        id: setup-python
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          npm_config_python: ${{ steps.setup-python.outputs.python-path }}
+
+      # A failing test on Linux fails this job, and publish waits for every job
+      - name: Tests
+        if: matrix.os == 'ubuntu-latest'
+        run: npm run typecheck && npm test
+
+      - name: Build & package
+        run: npm run ${{ matrix.script }} -- --publish never
+        env:
+          # Unsigned mac builds in CI unless secrets are provided
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kbms-${{ matrix.os }}
+          path: release/*
+          if-no-files-found: error
+
+  publish:
+    needs: release
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/**/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
