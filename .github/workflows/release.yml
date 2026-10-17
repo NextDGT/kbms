@@ -60,7 +60,16 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: kbms-${{ matrix.os }}
-          path: release/*
+          path: |
+            release/*.AppImage
+            release/*.deb
+            release/*.rpm
+            release/*.exe
+            release/*.dmg
+            release/*.zip
+            release/*.7z
+            release/*.blockmap
+            release/*.yml
           if-no-files-found: error
 
   publish:
