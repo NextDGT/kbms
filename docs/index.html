@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KBMS — İndir ve Kullanım Kılavuzu</title>
+<meta name="description" content="KBMS, PDF ve Word belgelerindeki kişisel verileri bilgisayarınızda, internete çıkmadan maskeler. Windows, macOS ve Linux için indirin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23217b63'/%3E%3Crect x='7' y='10' width='18' height='4' rx='1' fill='%23fff'/%3E%3Crect x='7' y='18' width='11' height='4' rx='1' fill='%23b5e5d3'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --bg-alt: #f3ebe0;
+    --surface: #ffffff;
+    --text: #232e2b;
+    --muted: #4d675e;
+    --border: #e4e9e7;
+    --accent: #217b63;
+    --accent-hover: #1c6351;
+    --accent-soft: #d9f2e8;
+    --accent-text: #ffffff;
+    --warn-bg: #fdf3e2;
+    --warn-border: #f0d7a8;
+    --warn-text: #6b4a12;
+    --code-bg: #f4f6f5;
+    --shadow: 0 18px 50px -28px rgba(18, 26, 24, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121a18;
+      --bg-alt: #19231f;
+      --surface: #1d2826;
+      --text: #e4e9e7;
+      --muted: #9aada5;
+      --border: #31423d;
+      --accent: #4fb595;
+      --accent-hover: #83d0b7;
+      --accent-soft: #194f42;
+      --accent-text: #0d1513;
+      --warn-bg: #2e2514;
+      --warn-border: #5c4820;
+      --warn-text: #f0d7a8;
+      --code-bg: #232e2b;
+      --shadow: 0 18px 50px -28px rgba(0, 0, 0, 0.8);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121a18;
+    --bg-alt: #19231f;
+    --surface: #1d2826;
+    --text: #e4e9e7;
+    --muted: #9aada5;
+    --border: #31423d;
+    --accent: #4fb595;
+    --accent-hover: #83d0b7;
+    --accent-soft: #194f42;
+    --accent-text: #0d1513;
+    --warn-bg: #2e2514;
+    --warn-border: #5c4820;
+    --warn-text: #f0d7a8;
+    --code-bg: #232e2b;
+    --shadow: 0 18px 50px -28px rgba(0, 0, 0, 0.8);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 17px/1.6 "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; line-height: 1.2; margin: 0; }
+  h1 { font-size: clamp(2rem, 5vw, 3.1rem); letter-spacing: -0.01em; }
+  h2 { font-size: clamp(1.6rem, 3.5vw, 2.1rem); margin-bottom: 0.5rem; }
+  h3 { font-size: 1.2rem; }
+  p { margin: 0 0 1rem; }
+  a { color: var(--accent); }
+  code, kbd {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.88em;
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.1em 0.4em;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  section { padding: 64px 0; }
+  section.alt { background: var(--bg-alt); }
+  .lead { color: var(--muted); font-size: 1.1rem; max-width: 640px; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  /* Header */
+  header.top {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; color: var(--text); }
+  .brand svg { flex: none; }
+  nav.links { display: flex; gap: 22px; }
+  nav.links a { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+  nav.links a:hover { color: var(--text); }
+  @media (max-width: 640px) { nav.links { gap: 14px; } nav.links a.hide-sm { display: none; } }
+
+  /* Hero */
+  .hero { padding: 72px 0 56px; }
+  .hero h1 { max-width: 760px; margin-bottom: 1rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 1.75rem; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px; border-radius: 12px;
+    font: inherit; font-weight: 700; text-decoration: none; cursor: pointer;
+    border: 1px solid transparent;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-text); }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--muted); }
+  .version-line { color: var(--muted); font-size: 0.9rem; margin-top: 0.9rem; }
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 48px; }
+  .feature { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
+  .feature strong { display: block; margin-bottom: 4px; }
+  .feature span { color: var(--muted); font-size: 0.95rem; }
+
+  /* Downloads */
+  .dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 32px; }
+  .dl-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: 24px; display: flex; flex-direction: column; gap: 14px;
+    box-shadow: var(--shadow);
+  }
+  .dl-card.is-you { border-color: var(--accent); outline: 2px solid var(--accent-soft); }
+  .dl-head { display: flex; align-items: center; gap: 12px; }
+  .dl-head svg { width: 30px; height: 30px; flex: none; color: var(--text); }
+  .you-badge {
+    margin-left: auto; font-size: 0.75rem; font-weight: 700;
+    background: var(--accent-soft); color: var(--accent);
+    padding: 3px 10px; border-radius: 999px; display: none;
+  }
+  .dl-card.is-you .you-badge { display: inline-block; }
+  .dl-option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; border-radius: 12px; text-decoration: none;
+    border: 1px solid var(--border); color: var(--text);
+  }
+  .dl-option:hover { border-color: var(--accent); }
+  .dl-option.main { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+  .dl-option.main:hover { background: var(--accent-hover); }
+  .dl-option .txt { flex: 1; min-width: 0; }
+  .dl-option .t1 { font-weight: 700; display: block; }
+  .dl-option .t2 { font-size: 0.85rem; opacity: 0.8; display: block; }
+  .dl-option .size { font-size: 0.8rem; opacity: 0.75; white-space: nowrap; }
+  .dl-note { font-size: 0.9rem; color: var(--muted); margin: 0; }
+  .all-files { margin-top: 24px; color: var(--muted); font-size: 0.95rem; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 6px; margin: 28px 0 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .tab {
+    font: inherit; font-weight: 700; color: var(--muted);
+    background: none; border: none; cursor: pointer;
+    padding: 12px 18px; border-bottom: 3px solid transparent; margin-bottom: -1px;
+  }
+  .tab[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); }
+  .panel { padding-top: 28px; }
+  .panel[hidden] { display: none; }
+
+  /* Steps */
+  ol.steps { list-style: none; counter-reset: step; padding: 0; margin: 0; display: grid; gap: 18px; }
+  ol.steps > li {
+    counter-increment: step; position: relative;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px 20px 18px 68px;
+  }
+  ol.steps > li::before {
+    content: counter(step);
+    position: absolute; left: 18px; top: 16px;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent);
+    font-weight: 700; display: grid; place-items: center;
+  }
+  ol.steps h3 { margin-bottom: 6px; }
+  ol.steps p:last-child, ol.steps ul:last-child { margin-bottom: 0; }
+  ol.steps ul { margin: 0 0 1rem; padding-left: 1.2rem; }
+  ol.steps li li { margin-bottom: 4px; }
+  .ui { font-weight: 700; white-space: nowrap; }
+
+  .callout {
+    background: var(--warn-bg); border: 1px solid var(--warn-border); color: var(--warn-text);
+    border-radius: 12px; padding: 14px 16px; margin-top: 12px; font-size: 0.95rem;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .cmd { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
+  .cmd code { padding: 6px 10px; overflow-x: auto; max-width: 100%; }
+  .copy {
+    font: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer;
+    background: var(--surface); color: var(--text); border: 1px solid var(--border);
+    border-radius: 8px; padding: 5px 12px;
+  }
+
+  /* Flow diagram */
+  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 28px 0 36px; }
+  .flow .node {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 8px 14px; font-size: 0.92rem; font-weight: 500;
+  }
+  .flow .node.key { background: var(--accent-soft); border-color: transparent; color: var(--accent); font-weight: 700; }
+  .flow .arr { color: var(--muted); }
+  .token { font-family: "IBM Plex Mono", monospace; font-size: 0.88em; background: var(--accent-soft); color: var(--accent); padding: 1px 6px; border-radius: 5px; white-space: nowrap; }
+
+  /* Important */
+  .important-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 28px; }
+  .imp { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
+  .imp.danger { border-color: var(--warn-border); background: var(--warn-bg); color: var(--warn-text); }
+  .imp h3 { font-size: 1.05rem; margin-bottom: 6px; font-family: "DM Sans", sans-serif; font-weight: 700; }
+  .imp p { margin: 0; font-size: 0.95rem; }
+
+  /* FAQ */
+  details {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 0 18px; margin-bottom: 10px;
+  }
+  summary { cursor: pointer; font-weight: 700; padding: 16px 0; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--accent); font-size: 1.3rem; line-height: 1; }
+  details[open] summary::after { content: "–"; }
+  details > div { padding-bottom: 16px; color: var(--muted); }
+  details > div p:last-child { margin-bottom: 0; }
+
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--border); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#217b63"/><rect x="7" y="10" width="18" height="4" rx="1" fill="#fff"/><rect x="7" y="18" width="11" height="4" rx="1" fill="#b5e5d3"/></svg>
+      KBMS
+    </a>
+    <nav class="links">
+      <a href="#indir">İndir</a>
+      <a href="#kurulum">Kurulum</a>
+      <a href="#kullanim">Kullanım</a>
+      <a href="#sss" class="hide-sm">Sorular</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Kurumsal Belge Maskeleme Sistemi</p>
+      <h1>Belgelerinizdeki kişisel verileri, dışarı göndermeden önce gizleyin.</h1>
+      <p class="lead">KBMS, PDF ve Word belgelerindeki ad, soyad, T.C. kimlik no, IBAN, telefon gibi bilgileri <span class="token">[AD_1]</span> gibi kodlarla değiştirir. Belge size geri döndüğünde kodları yeniden gerçek bilgilere çevirir. Her şey kendi bilgisayarınızda olur; internete hiçbir şey gönderilmez.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" id="hero-download" href="#indir">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span id="hero-label">KBMS'yi indir</span>
+        </a>
+        <a class="btn btn-ghost" href="#kullanim">Nasıl kullanılır?</a>
+      </div>
+      <p class="version-line" id="version-line">Ücretsiz · Windows, macOS ve Linux</p>
+
+      <div class="features">
+        <div class="feature"><strong>İnternetsiz çalışır</strong><span>Belgeleriniz bilgisayarınızdan hiç çıkmaz.</span></div>
+        <div class="feature"><strong>PDF ve Word</strong><span>Taranmış PDF'leri de okur.</span></div>
+        <div class="feature"><strong>Geri çevrilebilir</strong><span>Dönen belgedeki kodlar gerçek bilgilere döner.</span></div>
+        <div class="feature"><strong>KVKK'ya uygun paylaşım</strong><span>Dışarı giden belgede kişisel veri kalmaz.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="indir">
+    <div class="wrap">
+      <h2>İndir</h2>
+      <p class="lead">Bilgisayarınıza uygun olanı seçin. Emin değilseniz her kutudaki yeşil düğmeyi kullanın.</p>
+
+      <div class="dl-grid">
+        <div class="dl-card" data-os="windows">
+          <div class="dl-head">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.5v7H3zM11.5 4.4 21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z"/></svg>
+            <h3>Windows</h3>
+            <span class="you-badge">Sizin sisteminiz</span>
+          </div>
+          <a class="dl-option main" data-asset="win-setup" href="https://github.com/NextDGT/kbms/releases/latest">
+            <span class="txt"><span class="t1">Kurulum programı</span><span class="t2">Önerilen · Windows 10 ve 11</span></span>
+            <span class="size"></span>
+          </a>
+          <a class="dl-option" data-asset="win-portable" href="https://github.com/NextDGT/kbms/releases/latest">
+            <span class="txt"><span class="t1">Kurulumsuz sürüm</span><span class="t2">Kurmadan çalışır; yönetici izni gerekmez</span></span>
+            <span class="size"></span>
+          </a>
+        </div>
+
+        <div class="dl-card" data-os="mac">
+          <div class="dl-head">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.8-1.1-2.9-4.1zM13.9 5.2c.7-.8 1.2-2 1-3.2-1 0-2.3.7-3 1.5-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.4z"/></svg>
+            <h3>macOS</h3>
+            <span class="you-badge">Sizin sisteminiz</span>
+          </div>
+          <a class="dl-option main" data-asset="mac-arm" href="https://github.com/NextDGT/kbms/releases/latest">
+            <span class="txt"><span class="t1">Apple çipli Mac</span><span class="t2">M1, M2, M3, M4 (2020 sonrası)</span></span>
+            <span class="size"></span>
+          </a>
+          <a class="dl-option" data-asset="mac-intel" href="https://github.com/NextDGT/kbms/releases/latest">
+            <span class="txt"><span class="t1">Intel işlemcili Mac</span><span class="t2">Daha eski Mac'ler</span></span>
+            <span class="size"></span>
+          </a>
+          <p class="dl-note"><strong>Hangisi bende?</strong> Ekranın sol üstündeki elma simgesi → <span class="ui">Bu Mac Hakkında</span>. “Çip: Apple M…” yazıyorsa Apple çipli, “İşlemci: Intel” yazıyorsa Intel.</p>
+        </div>
+
+        <div class="dl-card" data-os="linux">
+          <div class="dl-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c-2.2 0-3.5 1.9-3.5 4.4 0 1.6.3 2.6-.6 4.1-1 1.6-2.9 4-2.9 6.4 0 .8.2 1.5.6 2"/><path d="M12 2.5c2.2 0 3.5 1.9 3.5 4.4 0 1.6-.3 2.6.6 4.1 1 1.6 2.9 4 2.9 6.4 0 .8-.2 1.5-.6 2"/><path d="M5.5 19.5c1 .9 2.5 1.6 3.5 1.6 1 0 1.7-.6 3-.6s2 .6 3 .6c1 0 2.5-.7 3.5-1.6"/><circle cx="10.5" cy="7" r=".6" fill="currentColor"/><circle cx="13.5" cy="7" r=".6" fill="currentColor"/><path d="M10.6 9.2c.4.4.9.6 1.4.6s1-.2 1.4-.6"/></svg>
+            <h3>Linux</h3>
+            <span class="you-badge">Sizin sisteminiz</span>
+          </div>
+          <a class="dl-option main" data-asset="appimage" href="https://github.com/NextDGT/kbms/releases/latest">
+            <span class="txt"><span class="t1">AppImage</span><span class="t2">Tüm dağıtımlarda çalışır</span></span>
+            <span class="size"></span>
+          </a>
+          <a class="dl-option" data-asset="deb" href="https://github.com/NextDGT/kbms/releases/latest">
+            <span class="txt"><span class="t1">.deb paketi</span><span class="t2">Ubuntu, Debian, Linux Mint, Pardus</span></span>
+            <span class="size"></span>
+          </a>
+          <a class="dl-option" data-asset="rpm" href="https://github.com/NextDGT/kbms/releases/latest">
+            <span class="txt"><span class="t1">.rpm paketi</span><span class="t2">Fedora, RHEL, openSUSE</span></span>
+            <span class="size"></span>
+          </a>
+        </div>
+      </div>
+
+      <p class="all-files">Tüm dosyalar ve önceki sürümler: <a id="release-link" href="https://github.com/NextDGT/kbms/releases/latest">GitHub sürüm sayfası</a></p>
+    </div>
+  </section>
+
+  <section id="kurulum">
+    <div class="wrap">
+      <h2>Kurulum</h2>
+      <p class="lead">KBMS ücretsiz ve güvenlidir, ancak henüz Microsoft veya Apple'dan alınmış bir imza sertifikası yoktur. Bu yüzden ilk açılışta bilgisayarınız bir uyarı gösterebilir. Aşağıdaki adımlar bu uyarıyı nasıl geçeceğinizi anlatır. Bu işlem yalnızca bir kez yapılır.</p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" id="tab-windows" aria-controls="panel-windows" aria-selected="true">Windows</button>
+        <button class="tab" role="tab" id="tab-mac" aria-controls="panel-mac" aria-selected="false">macOS</button>
+        <button class="tab" role="tab" id="tab-linux" aria-controls="panel-linux" aria-selected="false">Linux</button>
+      </div>
+
+      <div class="panel" id="panel-windows" role="tabpanel" aria-labelledby="tab-windows">
+        <ol class="steps">
+          <li>
+            <h3>Kurulum programını indirin</h3>
+            <p>Yukarıdaki <span class="ui">Kurulum programı</span> düğmesine basın. Dosya, <span class="ui">İndirilenler</span> klasörüne kaydedilir.</p>
+          </li>
+          <li>
+            <h3>İndirilen dosyayı açın</h3>
+            <p>Adı <code>KBMS Setup</code> ile başlayan dosyaya çift tıklayın.</p>
+          </li>
+          <li>
+            <h3>“Windows bilgisayarınızı korudu” uyarısını geçin</h3>
+            <p>Mavi bir pencere çıkarsa önce <span class="ui">Ek bilgi</span> yazısına, ardından beliren <span class="ui">Yine de çalıştır</span> düğmesine basın.</p>
+          </li>
+          <li>
+            <h3>Kurulumu tamamlayın</h3>
+            <p><span class="ui">İleri</span> ile ilerleyin. Kurulum yerini değiştirmeniz gerekmez. Bitince masaüstünde ve Başlat menüsünde <strong>KBMS</strong> simgesi oluşur.</p>
+          </li>
+        </ol>
+        <div class="callout"><p><strong>Kurulumsuz sürüm:</strong> Bilgisayara program kurma izniniz yoksa <span class="ui">Kurulumsuz sürüm</span>'ü indirin ve doğrudan çift tıklayarak açın. Yukarıdaki 3. adımdaki uyarı bu sürümde de çıkabilir.</p></div>
+      </div>
+
+      <div class="panel" id="panel-mac" role="tabpanel" aria-labelledby="tab-mac" hidden>
+        <ol class="steps">
+          <li>
+            <h3>Mac'inize uygun dosyayı indirin</h3>
+            <p>Apple çipli veya Intel seçeneklerinden birini indirin (hangisinin sizde olduğunu indirme kutusundaki açıklamada bulabilirsiniz).</p>
+          </li>
+          <li>
+            <h3>Uygulamayı Uygulamalar klasörüne taşıyın</h3>
+            <p>İndirilen <code>.dmg</code> dosyasına çift tıklayın. Açılan pencerede <strong>KBMS</strong> simgesini yanındaki <span class="ui">Applications</span> (Uygulamalar) klasörüne sürükleyin.</p>
+          </li>
+          <li>
+            <h3>İlk açılış: güvenlik izni verin</h3>
+            <p>KBMS'yi Uygulamalar klasöründen açmayı deneyin. “Açılamıyor” uyarısı çıkarsa <span class="ui">Bitti</span>'ye basın, sonra:</p>
+            <ul>
+              <li>Apple menüsü (sol üstteki elma simgesi) → <span class="ui">Sistem Ayarları</span> → <span class="ui">Gizlilik ve Güvenlik</span>'i açın.</li>
+              <li>Sayfanın altına inin; “KBMS engellendi” yazısının yanındaki <span class="ui">Yine de Aç</span> düğmesine basın ve parolanızı girin.</li>
+            </ul>
+            <p>Bundan sonra KBMS normal şekilde açılır.</p>
+          </li>
+        </ol>
+        <div class="callout">
+          <p><strong>“KBMS hasarlı ve açılamıyor” uyarısı çıkarsa:</strong> Dosya bozuk değildir; macOS imzasız uygulamaları böyle işaretler. <span class="ui">Uygulamalar → İzlenceler → Terminal</span>'i açın, aşağıdaki satırı yapıştırıp <kbd>Enter</kbd>'a basın, ardından KBMS'yi yeniden açın:</p>
+          <div class="cmd"><code id="mac-cmd">xattr -cr /Applications/KBMS.app</code><button class="copy" data-copy="mac-cmd">Kopyala</button></div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-linux" role="tabpanel" aria-labelledby="tab-linux" hidden>
+        <ol class="steps">
+          <li>
+            <h3>AppImage (her dağıtım)</h3>
+            <p>Dosyayı indirin, üzerine sağ tıklayıp <span class="ui">Özellikler → İzinler</span> bölümünde <span class="ui">Programın çalışmasına izin ver</span> kutusunu işaretleyin, sonra çift tıklayın.</p>
+            <p>Terminal tercih ederseniz:</p>
+            <div class="cmd"><code id="linux-cmd">chmod +x KBMS-*.AppImage && ./KBMS-*.AppImage</code><button class="copy" data-copy="linux-cmd">Kopyala</button></div>
+          </li>
+          <li>
+            <h3>.deb paketi (Ubuntu, Debian, Mint, Pardus)</h3>
+            <p>Dosyaya çift tıklayın; açılan Yazılım Merkezi'nde <span class="ui">Kur</span>'a basın. KBMS uygulama menüsünde görünür.</p>
+          </li>
+          <li>
+            <h3>.rpm paketi (Fedora, RHEL, openSUSE)</h3>
+            <p>Dosyaya çift tıklayıp yazılım yöneticisinde kurun.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="kullanim">
+    <div class="wrap">
+      <h2>Kullanım kılavuzu</h2>
+      <p class="lead">KBMS ile bir belgeyi dışarı göndermek ve geri aldığınızda gerçek bilgileri yerine koymak birkaç adımdan oluşur.</p>
+
+      <div class="flow" aria-label="İş akışı">
+        <span class="node">Belgeyi yükle</span><span class="arr">→</span>
+        <span class="node key">Anonimleştir</span><span class="arr">→</span>
+        <span class="node">Dışarı gönder</span><span class="arr">→</span>
+        <span class="node">Dönen belgeyi yükle</span><span class="arr">→</span>
+        <span class="node key">Gerçek bilgiler geri gelir</span>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <h3>Hesap oluşturun</h3>
+          <p>KBMS'yi ilk açtığınızda <span class="ui">Hesap oluştur</span>'a basın; bir kullanıcı adı (en az 3 harf) ve parola (en az 6 karakter) belirleyin. Sonraki açılışlarda <span class="ui">Giriş yap</span> ile girersiniz.</p>
+          <div class="callout"><p><strong>Parolanızı unutmayın.</strong> Parola sıfırlama yoktur. Parola unutulursa, maskelenmiş belgeler bir daha gerçek bilgilere çevrilemez. Güvenli bir yere not edin.</p></div>
+        </li>
+        <li>
+          <h3>Bir klasör açın</h3>
+          <p><span class="ui">Klasörler</span> sayfasında <span class="ui">+</span> düğmesine basın, klasöre bir ad verin (ör. müşteri veya dosya adı) ve <span class="ui">Oluştur</span>'a basın. Klasörler yalnızca belgelerinizi düzenli tutmak içindir.</p>
+        </li>
+        <li>
+          <h3>Belgenizi yükleyin</h3>
+          <p>Klasörün içinde <span class="ui">Belge yükle</span>'ye basın ve bir PDF ya da Word (<code>.docx</code>) dosyası seçin. Taranmış (fotoğraf gibi) PDF'ler de okunur; bu biraz daha uzun sürer.</p>
+        </li>
+        <li>
+          <h3>Anonimleştirin</h3>
+          <p>Yüklediğiniz belgeye tıklayın ve <span class="ui">Anonimleştir</span>'e basın. KBMS belgedeki kişisel verileri bulur ve işaretler: ad, soyad, T.C. kimlik no, vergi no, IBAN, e-posta, telefon ve araç plakası.</p>
+        </li>
+        <li>
+          <h3>İşaretleri kontrol edin</h3>
+          <p>Solda belgenin metni, sağda bulunan bilgilerin listesi görünür. <strong>Metinde işaretli her yer, gönderilecek belgede bir koda dönüşecektir</strong> (ör. “Ayşe” → <span class="token">[AD_1]</span>).</p>
+          <ul>
+            <li><strong>Gözden kaçan bir bilgi varsa:</strong> metinde o kelimeyi seçin, sağ tıklayın ve <span class="ui">Ad olarak ekle</span>, <span class="ui">Soyad olarak ekle</span> veya <span class="ui">Özel maskele</span>'yi seçin.</li>
+            <li><strong>Yanlışlıkla işaretlenen bir yer varsa</strong> (ör. “Türk Ceza Kanunu”ndaki “Türk”): işarete sağ tıklayıp yalnız o yeri ya da o ifadeyi her zaman dışarıda bırakabilirsiniz.</li>
+            <li>Listede istemediğiniz bir bilgiyi <span class="ui">Kaldır</span> ile çıkarın.</li>
+          </ul>
+        </li>
+        <li>
+          <h3>Anonim belgeyi üretin</h3>
+          <p>Her şey doğruysa <span class="ui">Anonim belgeyi üret</span>'e basın. PDF yüklediyseniz çıktının Word (düzenlenebilir) mi PDF mi olacağını seçebilirsiniz. Gerçek bilgiler, parolanızla şifrelenmiş olarak yalnızca sizin bilgisayarınızda saklanır.</p>
+        </li>
+        <li>
+          <h3>Dışarı gönderin</h3>
+          <p>Anonim belgenin sayfasında <span class="ui">Üçüncü taraf export</span>'a basıp dosyayı kaydedin. Bu dosyayı çevirmene, danışmana veya bir yapay zekâ aracına güvenle gönderebilirsiniz; içinde kişisel veri yoktur.</p>
+          <div class="callout"><p>Karşı taraftan <span class="token">[AD_1]</span> gibi kodlara <strong>dokunmamasını</strong> isteyin. Kod değiştirilir veya bölünürse (ör. <code>[AD_ 1]</code>) o yer geri çevrilemez.</p></div>
+        </li>
+        <li>
+          <h3>Dönen belgeyi geri yükleyin</h3>
+          <p>Size geri gelen dosyayı, gönderdiğiniz anonim belgenin sayfasındaki <span class="ui">Dönen belgeyi geri yükle</span> ile açın. KBMS kodları gerçek bilgilere çevirir ve yeni bir belge oluşturur. <span class="ui">Geri yüklenmişi indir</span> ile bilgisayarınıza kaydedin.</p>
+        </li>
+      </ol>
+
+      <h2 style="margin-top:56px">Bilmeniz gerekenler</h2>
+      <div class="important-grid">
+        <div class="imp danger"><h3>Parola kurtarılamaz</h3><p>Parolanızı kaybederseniz anonim belgeleriniz geri çevrilemez.</p></div>
+        <div class="imp"><h3>Belgedeki resimler taranmaz</h3><p>Word dosyasındaki resimlerin içindeki yazılar maskelenmez. Böyle bir durumda KBMS uyarı gösterir.</p></div>
+        <div class="imp"><h3>Her zaman kontrol edin</h3><p>Sözlükte olmayan veya küçük harfle yazılmış isimler bulunamayabilir. Göndermeden önce işaretlere göz atın.</p></div>
+        <div class="imp"><h3>Taranmış belgeler yaklaşıktır</h3><p>Kötü taranmış sayfalarda bazı numaralar okunamayabilir. Bu belgeleri özellikle dikkatli kontrol edin.</p></div>
+        <div class="imp"><h3>PDF çıktısı sade görünür</h3><p>PDF'ten üretilen belgede resim, çizgi ve tablo kenarları bulunmaz; metin ve yerleşimi korunur.</p></div>
+        <div class="imp"><h3>Yalnızca .docx</h3><p>Eski Word biçimi (<code>.doc</code>) desteklenmez. Word'de <span class="ui">Farklı Kaydet → .docx</span> ile dönüştürebilirsiniz.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sss">
+    <div class="wrap">
+      <h2>Sık sorulan sorular</h2>
+      <div style="margin-top:24px">
+        <details>
+          <summary>İnternet bağlantısı gerekiyor mu?</summary>
+          <div><p>Hayır. KBMS tamamen çevrimdışı çalışır ve hiçbir yere bağlanmaz. İnternet yalnızca programı indirmek için gerekir.</p></div>
+        </details>
+        <details>
+          <summary>Belgelerim ve bilgilerim nerede saklanıyor?</summary>
+          <div>
+            <p>Yalnızca kendi bilgisayarınızda. Gerçek bilgiler parolanızla şifrelenir. Veriler şu klasördedir:</p>
+            <p>Windows: <code>%APPDATA%\kbms</code><br>macOS: <code>~/Library/Application Support/kbms</code><br>Linux: <code>~/.config/kbms</code></p>
+          </div>
+        </details>
+        <details>
+          <summary>Yeni sürüme nasıl geçerim?</summary>
+          <div><p>Bu sayfadan yeni sürümü indirip mevcut kurulumun üzerine kurun. Hesabınız, klasörleriniz ve belgeleriniz korunur.</p></div>
+        </details>
+        <details>
+          <summary>Aynı belgeyi birden fazla kez anonimleştirebilir miyim?</summary>
+          <div><p>Evet. Her anonimleştirme ayrı bir anonim belge oluşturur ve kendi kodlarını kullanır. Öncekiler silinmez.</p></div>
+        </details>
+        <details>
+          <summary>Bir ismi her seferinde elle eklemek zorunda mıyım?</summary>
+          <div><p>Hayır. Sağ tıklayarak eklediğiniz adlar ve soyadlar sözlüğünüze kaydedilir ve sonraki belgelerde otomatik bulunur. Sözlüğü <span class="ui">Ad / soyad</span> sayfasından da düzenleyebilirsiniz.</p></div>
+        </details>
+        <details>
+          <summary>Bilgisayarımı değiştirirsem ne olur?</summary>
+          <div><p>Veriler yalnızca o bilgisayarda bulunur. Yeni bilgisayara geçmeden önce, dönüşünü beklediğiniz belgeleri geri yüklemeyi tamamlayın.</p></div>
+        </details>
+        <details>
+          <summary>Bir sorun yaşarsam kime başvururum?</summary>
+          <div><p>Kurumunuzun BT ekibine veya <a href="https://github.com/NextDGT/kbms/issues">GitHub üzerinden</a> geliştiricilere yazabilirsiniz.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>KBMS — Kurumsal Belge Maskeleme Sistemi</span>
+    <span><a href="https://github.com/NextDGT/kbms">Kaynak kod</a> · MIT lisansı</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var REPO = 'NextDGT/kbms';
+
+  // Match release assets by pattern so links survive version bumps
+  var MATCHERS = {
+    'win-setup':    function (n) { return /setup.*\.exe$/i.test(n); },
+    'win-portable': function (n) { return /\.exe$/i.test(n) && !/setup/i.test(n); },
+    'mac-arm':      function (n) { return /arm64\.dmg$/i.test(n); },
+    'mac-intel':    function (n) { return /\.dmg$/i.test(n) && !/arm64/i.test(n); },
+    'appimage':     function (n) { return /\.appimage$/i.test(n); },
+    'deb':          function (n) { return /\.deb$/i.test(n); },
+    'rpm':          function (n) { return /\.rpm$/i.test(n); }
+  };
+
+  function detectOS() {
+    var p = ((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '').toLowerCase();
+    var ua = navigator.userAgent.toLowerCase();
+    if (/android|iphone|ipad|ipod/.test(ua)) return null;
+    if (p.indexOf('win') === 0 || ua.indexOf('windows') !== -1) return 'windows';
+    if (p.indexOf('mac') === 0 || ua.indexOf('mac os') !== -1) return 'mac';
+    if (p.indexOf('linux') !== -1 || ua.indexOf('linux') !== -1) return 'linux';
+    return null;
+  }
+
+  function mb(bytes) { return Math.round(bytes / 1048576) + ' MB'; }
+
+  var os = detectOS();
+  var heroLink = document.getElementById('hero-download');
+  var heroLabel = document.getElementById('hero-label');
+  var names = { windows: 'Windows', mac: 'macOS', linux: 'Linux' };
+
+  if (os) {
+    var card = document.querySelector('.dl-card[data-os="' + os + '"]');
+    if (card) {
+      card.classList.add('is-you');
+      card.parentNode.insertBefore(card, card.parentNode.firstChild);
+    }
+    heroLabel.textContent = names[os] + ' için indir';
+    selectTab(os);
+  }
+
+  // Tabs
+  function selectTab(id) {
+    document.querySelectorAll('.tab').forEach(function (t) {
+      var on = t.id === 'tab-' + id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  document.querySelectorAll('.tab').forEach(function (t) {
+    t.addEventListener('click', function () { selectTab(t.id.replace('tab-', '')); });
+  });
+
+  // Copy buttons
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var text = document.getElementById(b.getAttribute('data-copy')).textContent;
+      try {
+        navigator.clipboard.writeText(text).then(function () {
+          b.textContent = 'Kopyalandı';
+          setTimeout(function () { b.textContent = 'Kopyala'; }, 1600);
+        });
+      } catch (e) {}
+    });
+  });
+
+  // Resolve direct download links from the latest release
+  fetch('https://api.github.com/repos/' + REPO + '/releases/latest')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (rel) {
+      var assets = (rel.assets || []).filter(function (a) { return !/\.(blockmap|yml)$/i.test(a.name); });
+      document.querySelectorAll('[data-asset]').forEach(function (el) {
+        var match = MATCHERS[el.getAttribute('data-asset')];
+        var asset = assets.filter(function (a) { return match(a.name); })[0];
+        if (!asset) return;
+        el.href = asset.browser_download_url;
+        el.querySelector('.size').textContent = mb(asset.size);
+      });
+
+      // Windows and Linux have one obvious default; macOS needs the chip choice
+      var heroAsset = os === 'windows' ? 'win-setup' : os === 'linux' ? 'appimage' : null;
+      var heroEl = heroAsset && document.querySelector('[data-asset="' + heroAsset + '"]');
+      if (heroEl && heroEl.href.indexOf('/download/') !== -1) heroLink.href = heroEl.href;
+
+      var date = new Date(rel.published_at).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+      document.getElementById('version-line').textContent =
+        'Sürüm ' + rel.tag_name.replace(/^v/, '') + ' · ' + date + ' · Ücretsiz';
+      document.getElementById('release-link').href = rel.html_url;
+    })
+    .catch(function () { /* Links fall back to the releases page */ });
+})();
+</script>
+</body>
+</html>
