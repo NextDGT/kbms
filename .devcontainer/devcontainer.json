@@ -1,7 +1,7 @@
 {
   "name": "KBMS Electron",
   "dockerFile": "./Dockerfile",
-  "workspaceFolder": "/workspace",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "remoteUser": "node",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
@@ -20,8 +20,11 @@
     "DISPLAY": "${localEnv:DISPLAY}"
   },
   "mounts": [
-    "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind"
+    "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.claude,target=/home/node/.claude,type=bind",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.claude.json,target=/home/node/.claude.json,type=bind"
   ],
+  "initializeCommand": "mkdir -p \"$HOME/.claude\" && touch \"$HOME/.claude.json\"",
   "runArgs": [
     "--network=host",
     "--ipc=host",
