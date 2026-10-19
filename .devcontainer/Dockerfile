@@ -42,6 +42,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libx11-xcb1 \
     && rm -rf /var/lib/apt/lists/*
 
+# Git aliases (system level, so a copied host ~/.gitconfig does not override them)
+RUN git config --system alias.st "status -sb" \
+ && git config --system alias.co checkout \
+ && git config --system alias.sw switch \
+ && git config --system alias.br branch \
+ && git config --system alias.ci commit \
+ && git config --system alias.ca "commit --amend --no-edit" \
+ && git config --system alias.df diff \
+ && git config --system alias.dc "diff --cached" \
+ && git config --system alias.lg "log --graph --oneline --decorate --all" \
+ && git config --system alias.last "log -1 HEAD --stat" \
+ && git config --system alias.unstage "reset HEAD --" \
+ && git config --system alias.undo "reset --soft HEAD~1"
+
 # Avoid Electron sandbox issues inside containers
 ENV ELECTRON_DISABLE_SANDBOX=1
 ENV ELECTRON_ENABLE_LOGGING=1
