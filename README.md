@@ -1,5 +1,7 @@
 # KBMS — Kurumsal Belge Maskeleme Sistemi
 
+> **Kullanıcılar için:** İndirme bağlantıları ve kullanım kılavuzu → **https://nextdgt.github.io/kbms/**
+
 KBMS (Kurumsal Belge Maskeleme Sistemi), PDF ve Word (DOCX) belgelerindeki kişisel verileri takma adlara (token) çeviren, tamamen **offline** çalışan bir Electron masaüstü uygulamasıdır. Anonim belge üçüncü tarafa verilir; geri dönüş anahtarları her anonim belgenin kaydında, kullanıcının parolasından türetilen anahtarla şifreli JSON olarak durur ve yalnızca oturum açıkken çözülür. Üçüncü taraf paketinde anahtar yoktur.
 
 Tipik kullanım: bir hukuk bürosu veya kurum, kişisel veri içeren bir belgeyi dış bir hizmet sağlayıcıya (çeviri, analiz, yapay zekâ aracı vb.) KVKK’ya uygun biçimde göndermek ister. KBMS belgedeki kişisel verileri maskeler, dönen belgedeki token’ları tekrar gerçek değerlere çevirir.
